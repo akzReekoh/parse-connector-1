@@ -1,0 +1,26 @@
+{
+  "app_id": {
+	"label": "Application ID",
+	"type": "String",
+	"required": true,
+	"help": "Please provide your Parse Application ID."
+  },
+  "javascript_key": {
+	"label": "JavaScript Key",
+	"type": "String",
+	"required": true,
+	"help": "Please provide your Parse JavaScript Key."
+  },
+  "default_channels": {
+    "label": "Default Channel",
+    "type": "Array",
+    "required": true,
+    "help": "Please provide a default channel."
+  },
+  "default_message":{
+    "label": "Default Message",
+    "type": "String",
+    "required": true,
+    "help": "Please provide a default message."
+  }
+}
