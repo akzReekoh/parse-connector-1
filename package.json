@@ -1,5 +1,5 @@
 {
-  "name": "parse-storage",
+  "name": "parse-connector",
   "description": "Parse Connector Plugin for the Reekoh IoT Platform.",
   "version": "0.1.1",
   "author": "Reekoh, Inc.",
