@@ -3,6 +3,8 @@
 var platform = require('./platform'),
     isPlainObject = require('lodash.isplainobject'),
     isEmpty = require('lodash.isempty'),
+    trim = require('lodash.trim'),
+    map = require('lodash.map'),
 	Parse, config;
 
 platform.on('data', function (data) {
@@ -14,7 +16,7 @@ platform.on('data', function (data) {
             data.message = config.message;
 
         Parse.Push.send({
-            channels: data.channels,
+            channels: map(data.channels.split(','), trim),
             data: {
                 alert: data.message
             }

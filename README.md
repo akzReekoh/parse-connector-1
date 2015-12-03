@@ -17,7 +17,7 @@ To configure this plugin a Parse account, application and push notification chan
 
 Other Parameters:
 
-1. Default Channels - The default channel(s) to send notificaitons.
+1. Default Channels - The default channel(s) to send notifications.
 2. Default Message -  The default message to send.
 
 These parameters are then injected to the plugin from the platform.
@@ -25,7 +25,7 @@ These parameters are then injected to the plugin from the platform.
 ## Sample input data
 ```
 {
-    channels: ['test-channel1', 'test-channel2'], //(Array)
+    channels: 'test-channel1, test-channel2',
     message: 'This is a test message from Parse Connector Plugin.'
 }
 ```
