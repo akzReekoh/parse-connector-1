@@ -37,7 +37,7 @@ describe('Connector', function () {
 					options: {
 						app_id: APP_ID,
 						javascript_key: JAVASCRIPT_KEY,
-                        default_channels : ['default-channel'],
+                        default_channels : 'default-channel',
                         default_message : 'This is a default message.'
 					}
 				}
@@ -52,7 +52,7 @@ describe('Connector', function () {
 			connector.send({
 				type: 'data',
 				data: {
-					channels: ['test-channel1', 'test-channel2'],
+					channels: 'test-channel1, test-channel2',
                     message: 'This is a test message from Parse Connector Plugin.'
 				}
 			}, done);

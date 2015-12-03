@@ -13,9 +13,9 @@
   },
   "default_channels": {
     "label": "Default Channel",
-    "type": "Array",
+    "type": "String",
     "required": true,
-    "help": "Please provide a default channel."
+    "help": "Please provide default channel(s). For multiple channels, separate each by a comma(,)."
   },
   "default_message":{
     "label": "Default Message",
