@@ -7,7 +7,7 @@
   },
   "javascript_key": {
 	"label": "JavaScript Key",
-	"type": "String",
+	"type": "Password",
 	"required": true,
 	"help": "Please provide your Parse JavaScript Key."
   },
