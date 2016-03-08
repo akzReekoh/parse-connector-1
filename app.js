@@ -3,38 +3,48 @@
 var platform = require('./platform'),
     isPlainObject = require('lodash.isplainobject'),
     isEmpty = require('lodash.isempty'),
+    isArray = require('lodash.isarray'),
+    async = require('async'),
     trim = require('lodash.trim'),
     map = require('lodash.map'),
 	Parse, config;
 
+let sendData = (data) => {
+    if(isEmpty(data.channels))
+        data.channels = config.channels;
+
+    if(isEmpty(data.message))
+        data.message = config.message;
+
+    Parse.Push.send({
+        channels: map(data.channels.split(','), trim),
+        data: {
+            alert: data.message
+        }
+    }, {
+        success: function() {
+            platform.log(JSON.stringify({
+                title: 'Parse push notification sent.',
+                data: data
+            }));
+        },
+        error: function(error) {
+            console.error(error);
+            platform.handleException(error);
+        }
+    });
+};
 platform.on('data', function (data) {
     if(isPlainObject(data)){
-        if(isEmpty(data.channels))
-            data.channels = config.channels;
-
-        if(isEmpty(data.message))
-            data.message = config.message;
-
-        Parse.Push.send({
-            channels: map(data.channels.split(','), trim),
-            data: {
-                alert: data.message
-            }
-        }, {
-            success: function() {
-                platform.log(JSON.stringify({
-                    title: 'Parse push notification sent.',
-                    data: data
-                }));
-            },
-            error: function(error) {
-                console.error(error);
-                platform.handleException(error);
-            }
+        sendData(data);
+    }
+    else if(isArray(data)){
+        async.each(data, (datum) => {
+            sendData(datum);
         });
     }
     else
-        platform.handleException(new Error('Invalid data received. Must be a valid JSON Object. Data ' + data));
+        platform.handleException(new Error('Invalid data received. Must be a valid Array/JSON Object. Data ' + data));
 });
 
 platform.once('close', function () {
